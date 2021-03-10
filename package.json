@@ -2,7 +2,7 @@
   "name": "preeentacion-angular-io",
   "version": "1.0.0",
   "description": "Presentacion sobre angular",
-  "homepage": "http://www.github.com/utnfrrottads/presentacion-angulario",
+  "homepage": "http://www.github.com/curso-fullstack-polo-utn-rosario/presentacion-angulario",
   "main": "js/reveal.js",
   "scripts": {
     "test": "grunt test",
