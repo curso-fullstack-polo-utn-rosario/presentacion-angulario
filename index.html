@@ -1264,9 +1264,10 @@ export class AppModule {
                         <h1>Parametros de Rutas</h1>
                         <pre><code class="js">
     export const routes: Routes = [
-  { path: '', redirectTo: 'product-list', pathMatch: 'full' },
   { path: 'product-list', component: ProductList },
-  { path: 'product-details/:id', component: ProductDetails }
+  { path: 'product-details/:id', component: ProductDetails },
+  { path: '', redirectTo: 'product-list', pathMatch: 'full' },
+
 ];
 </code></pre>
                         <pre><code class="js">
@@ -1338,6 +1339,25 @@ export const routing = RouterModule.forRoot(routes);
                         <h1>CanActivate</h1>
 
                         <pre><code class="js">
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { LoginService } from './login-service';
+
+@Injectable()
+export class LoginRouteGuard implements CanActivate {
+
+  constructor(private loginService: LoginService) {}
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return this.loginService.isLoggedIn();
+  }
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h1>CanDeactivate</h1>
+
+                        <pre><code class="js">
 import { CanDeactivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AccountPage } from './account-page';
@@ -1352,28 +1372,44 @@ export class SaveFormsGuard implements CanDeactivate {
 }
                         </code></pre>
                     </section>
-
+<section>
+    <h1>Ejercicio 1</h1>
+    Crear la estructura de una pagina con:
+    <ul>
+        <li>Crear una estructura de componentes con header, footer y contenido</li>
+        <li>Una pagina de login solo con un boton que nos permite loguear y desloguear</li>
+        <li>Una pagina de acceso publico la home</li>
+        <li>Dos paginas de acceso privado solo para usuarios logueados</li>
+        <li>Una tercer pagina que se habilita solo cuando ya se han visitado todas las otras paginas</li>
+        <li>Una pagina de error si la ruta no coincide</li>
+    </ul>
+</section>
                     <section>
-                        <h1>Ejercicio</h1>
-                        <pre>
-Realizar una aplicación que permita editar una lista de <a href="/users.json">usuarios</a>
-La aplicación debe tener una pagina de login,
-el usuario logueado es parte de esa lista.
-La aplicación debe tener una pagina para mostrar la lista
-Otra para editar los usuarios
-Otra para dar de alta un usuario
-Otra para ver un usuario.
-(Se puede usar el formulario de edición con los campos en readonly)
-Y otra para eliminar los usuarios
+                        <h1>Ejercicio 2</h1>
+<p style="font-size: 24px">
+    Realizar una aplicación que permita ver una lista de peliculas.
+    Usando la api de <a href="https://www.omdbapi.com/">OMDB</a> obtener una lista de
+    peliculas de acuerdo a un criterio de búsqueda
+</p>
+<p style="font-size: 24px">
+    Mostrar los datos de la pelicula con su poster y titulo en una lista tipo mosaico.
+    Al hacer click en una pelicula ir a otra pagina que muestre el detalle de esa pelicula.
+    </p>
+                        <p style="font-size: 24px">
+                        La pagina debe tener un formulario de login con usuario y password, que nos permita loguearnos.
+    La pagina de detalle solo esta disponible para usuarios logueados.
+</p>
+                        <p style="font-size: 24px">
+    Si el usuario hace click en una pelicula sin estar loguieda
+    se le presenta una pantalla de error con un linka la pagina de login.
+                        </p>
+                        <p style="font-size: 24px">
 
-Cada usuario tiene permisos de
-agregar nuevos usuarios,
-editar usuarios
-eliminar usuarios
-editar sus propios datos
+                        Desde todas las paginas se puede volver al inicio a la pagina de login o a la accion de logout.
+    Para manejar la lista de usuarios permitidos crear un servicio una
+    lista fija de usuarios y passwords admitidos.
+</p>
 
-El usuario no puede eliminarse a si mismo
-                        </pre>
                     </section>
                 </section>
                 <section>
