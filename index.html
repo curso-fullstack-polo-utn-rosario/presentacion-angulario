@@ -1519,6 +1519,67 @@ updateName() {
 }             </code></pre>
                     </section>
                     <section>
+                        <h1>Formularios anidados</h1>
+                        <pre><code class="html"> <div formGroupName="address">
+  <h3>Address</h3>
+
+  <label>
+    Street:
+    <input type="text" formControlName="street">
+  </label>
+
+  <label>
+    City:
+    <input type="text" formControlName="city">
+  </label>
+
+  <label>
+    State:
+    <input type="text" formControlName="state">
+  </label>
+
+  <label>
+    Zip Code:
+    <input type="text" formControlName="zip">
+  </label>
+</div>
+            </code></pre>
+                    </section>
+                    <section>
+                        <h1>Formularios Anidados</h1>
+                        <pre><code class="js">export class ProfileEditorComponent {
+  profileForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    address: new FormGroup({
+      street: new FormControl(''),
+      city: new FormControl(''),
+      state: new FormControl(''),
+      zip: new FormControl('')
+    })
+  });
+                            }</code></pre>
+                    </section>
+                    <section>
+                        <h1>Construccion con FormBuilder</h1>
+                        <pre><code class="js">export class ProfileEditorComponent {
+  profileForm = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    address: this.fb.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: ['']
+    }),
+  });
+
+  constructor(private fb: FormBuilder) { }
+}
+
+                            </code></pre>
+                    </section>
+                    <section>
                         <h1>Ejercicio</h1>
                         <p>Usando la rama <code>reactive-forms</code> del <a href="https://github.com/curso-fullstack-polo-utn-rosario/angular9-example/tree/reactive-forms/src/app"> repositorio de ejemplos </a>
                         Modificar el ejemplo de Todolist para que permita:</p>
